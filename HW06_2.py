@@ -58,6 +58,14 @@ if check:
 else:
     print("Нет @")
 
+# Задание 9 вариант 2
+n = input("Введите строку:")
+if any(i == "@" for i in n):
+    print("Есть @")
+else:
+    print("Нет @")
+
+
 # Задание 10
 d = 10
 while d >= 0:
