@@ -21,3 +21,4 @@ emails = ["test@gmail.com", "invalid-email", "user@company.ru", "no@domain"]
 result = filter(lambda x:"@" in x and (x.endswith(".com") or x.endswith(".ru")),emails)
 print("Валидные email: ", list(result))
 
+
