@@ -50,6 +50,7 @@ def admin_test(*args):
     print("Выполняется админский тест")
     return "Success"
 
+
 user_one = "user"
 user_two = "admin"
 for user in user_one, user_two:
@@ -65,10 +66,12 @@ def timer(func):
         print (f"Время выполнения функции {func.__name__} {end_time - start_time}")
     return wrapper
 
+
 @timer
 def slow_test():
     time.sleep(1)
     return "OK"
+
 
 slow_test()
 
@@ -102,6 +105,7 @@ def wait_with_retry_until(**kwargs):
 @wait_with_retry_until(timeout=3, interval=0.5)
 def element_visible():
     return time.time() % 3 > 2  # имитация появления элемента
+
 
 element_visible()
 
@@ -140,6 +144,7 @@ def expensive_calculation(n):
     print(f"Вычисляем для {n}")
     time.sleep(1)
     return n * n
+
 
 print(expensive_calculation(5)) #медленно считает
 print(expensive_calculation(5)) #быстро возвращает из кеша
@@ -200,6 +205,7 @@ def conditional_log(min_level="INFO"):
 @conditional_log(LOG_LEVEL) # лог отключен
 def debug_test():
     return "debug_result"
+
 
 debug_test()
 
