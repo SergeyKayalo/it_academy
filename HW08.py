@@ -174,9 +174,7 @@ print(create_user(username="test", age='25'))
 
 print("\n7. Декоратор условного логирования")
 LOG_LEVEL = "DEBUG"
-
-def log(string):
-    print(string)
+log = lambda string: print(string)
 
 def conditional_log(min_level="INFO"):
     # Извлекаем min_level по-умолчанию (INFO)
