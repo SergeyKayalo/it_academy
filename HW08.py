@@ -73,7 +73,7 @@ def slow_test():
 slow_test()
 
 
-print("4. Декоратор ожидания с таймаутом")
+print("\n4. Декоратор ожидания с таймаутом")
 def wait_with_retry_until(**kwargs):
     def decorator(func):
         #@wraps(func)
@@ -105,7 +105,7 @@ def element_visible():
 
 element_visible()
 
-print("5. Декоратор кэширования результатов.")
+print("\n5. Декоратор кэширования результатов.")
 def cache_results(func):
     cache_list = {}
     @wraps(func)
@@ -148,7 +148,7 @@ print(expensive_calculation(6)) #медленно считает
 print(expensive_calculation(5)) #быстро возвращает из кеша
 
 
-print("6. Декоратор валидации параметров")
+print("\n6. Декоратор валидации параметров")
 def validate_params(decor_param):
     def decorator(func):
         @wraps(func)
@@ -172,7 +172,7 @@ print(create_user(username="test", age=25))
 print(create_user(username="test", age='25'))
 
 
-print("7. Декоратор условного логирования")
+print("\n7. Декоратор условного логирования")
 LOG_LEVEL = "DEBUG"
 
 def log(string):
