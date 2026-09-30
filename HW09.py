@@ -80,7 +80,12 @@ class Duration:
         return float(self.ret)
 
     def __add__(self, other):
-        return float(self.ret + other.ret)
+        r=float(self.ret + other.ret)
+        return f"{r:.2f} sec"
+
+    def __str__(self):
+        return f"{self.ret:.2f}"
+
 
 
 t1 = Duration(1.5)
