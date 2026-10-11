@@ -2,10 +2,10 @@ import random
 
 #1
 n = random.randint(1, 6)
-print("Бросок кубика: ",n)
+print("Бросок кубика: ", n)
 
 #2
-str="abcdefghijklmnopqrstuvwxyz"
+str = "abcdefghijklmnopqrstuvwxyz"
 str+=str.upper()
 password = "".join(random.choices(str, k=8))
 print("Случайный пароль из 8 букв: ", password)
