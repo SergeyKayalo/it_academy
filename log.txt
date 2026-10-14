@@ -1,0 +1,13 @@
+2023-10-27 10:00:01 INFO  Application started successfully.
+2023-10-27 10:00:02 INFO  Loading configuration from /etc/app/config.yaml
+2023-10-27 10:00:03 DEBUG Connecting to database at localhost:5432
+2023-10-27 10:00:04 INFO  Database connection established.
+2023-10-27 10:00:05 WARN  Disk space is running low (15% remaining).
+2023-10-27 10:00:06 ERROR Failed to fetch user data: Timeout occurred.
+2023-10-27 10:00:07 INFO  Retrying operation in 5 seconds...
+2023-10-27 10:00:12 ERROR Retry failed: Connection refused by remote host.
+2023-10-27 10:00:13 INFO  Switching to backup server.
+2023-10-27 10:00:14 INFO  Backup server connection successful.
+2023-10-27 10:00:15 ERROR Critical: Unable to write to log file. Permission denied.
+2023-10-27 10:00:16 INFO  Flushing buffers.
+2023-10-27 10:00:17 INFO  Shutting down gracefully.
