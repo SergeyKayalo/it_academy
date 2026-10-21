@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<company name="TechCorp" generated="2026-01-14">
+<employee id="1"><name>Maria</name><role>DEV</role><salary>7230</salary></employee>
+<employee id="2"><name>John</name><role>AQA</role><salary>5975</salary></employee>
+<employee id="3"><name>Maria</name><role>Team Lead</role><salary>1837</salary></employee>
+<employee id="4"><name>Paul</name><role>HR</role><salary>9741</salary></employee>
+<employee id="5"><name>David</name><role>AQA</role><salary>5381</salary></employee>
+<employee id="6"><name>Elena</name><role>Senior QA</role><salary>6328</salary></employee>
+<employee id="7"><name>Paul</name><role>PO</role><salary>7252</salary></employee>
+<employee id="8"><name>Paul</name><role>Junior DEV</role><salary>3259</salary></employee>
+<employee id="9"><name>John</name><role>QA</role><salary>5468</salary></employee>
+<employee id="10"><name>Paul</name><role>PM</role><salary>9572</salary></employee>
+</company>
