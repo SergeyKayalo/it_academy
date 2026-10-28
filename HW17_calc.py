@@ -44,22 +44,22 @@ def arithmetic(a, operator, b):
     result = None
     match operator:
         case "+":
-            print("Операция сложения")
+            print(f"Операция сложения: {a} + {b}")
             result = plus(a, b)
         case "-":
-            print("Операция вычитания")
+            print(f"Операция вычитания: {a} - {b}")
             result = minus(a, b)
         case "*":
-            print("Операция умножения")
+            print(f"Операция умножения: {a} * {b}")
             result = multiply(a, b)
         case "^":
-            print("Операция возведения в степень")
+            print(f"Операция возведения в степень: {a} ^ {b}")
             try:
                 result = power(a, b)
             except ZeroDivisionError:
                 raise ValueError(f"Возведение в отрицательную степень числа с основанием 0")
         case "/":
-            print("Операция деления")
+            print(f"Операция деления: {a} / {b}")
             try:
                 result = divide(a, b)
             except ZeroDivisionError:

@@ -5,12 +5,40 @@ import HW17_calc
 import unittest
 
 
-def _random_number(allow_float=True):
-    if allow_float and random.random() < 0.5:
-        return round(random.uniform(-9999999, 9999999), 2)
-    return random.randint(-9999999, 9999999)
+
 
 class MyTestSuite(unittest.TestCase):
+    def _random_number(allow_float=True):
+        if allow_float and random.random() < 0.5:
+            return round(random.uniform(-9999999, 9999999), 2)
+        return random.randint(-9999999, 9999999)
+
+# проверка парсинга строки в число
+    def test_valid(self):
+        VALID = [
+            ("42", 42, int),
+            ("0", 0, int),
+            ("-42", -42, int),
+            ("3.14", 3.14, float),
+            ("-3.14", -3.14, float),
+            ("0.0", 0.0, float),
+            ("  42  ", 42, int),
+            ("\t3.14\n", 3.14, float),
+        ]
+        for s, expected, expected_type in VALID:
+            with self.subTest(s=s):
+                result = HW17_calc.parse_number(s)
+                self.assertEqual(expected, result)
+                self.assertIs(type(result), expected_type, msg=f"type for {s!r}")
+
+    def test_invalid(self):
+        INVALID = ["", "   ", "+2", "abc", "12abc", "1.2.3", "--5", "+-5", "-", "+",
+                   ".5", "5.", "1e5", "0x10"]
+        for s in INVALID:
+            with self.subTest(s=s):
+                self.assertIsNone(HW17_calc.parse_number(s))
+
+
 # сложение
     def test_plus(self):
         result = HW17_calc.plus(5,4)
@@ -93,8 +121,6 @@ class MyTestSuite(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             HW17_calc.power(0, -6)
 # рандомные тесты
-
-
     def test_random_operations(self):
         OPERATIONS = [
             ("+", operator.add),
@@ -109,9 +135,8 @@ class MyTestSuite(unittest.TestCase):
                     a = random.randint(-20, 20)
                     b = random.randint(-6, 6)
                 else:
-                    a = _random_number()
-                    b = _random_number()
-
+                    a = self._random_number()
+                    b = self._random_number()
                 # фильтры ПОСЛЕ генерации
                 if op == "/" and b == 0:
                     continue
