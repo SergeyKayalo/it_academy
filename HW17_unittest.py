@@ -121,7 +121,7 @@ class MyTestSuite(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             HW17_calc.power(0, -6)
 # рандомные тесты
-    def test_random_operations(self):
+    def test_random_arithmetic(self):
         OPERATIONS = [
             ("+", operator.add),
             ("-", operator.sub),
