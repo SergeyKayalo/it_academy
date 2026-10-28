@@ -32,12 +32,21 @@ class MyTestSuite(unittest.TestCase):
         self.assertEqual(200, result)
 
     def test_multiply_negative_result(self):
-        result = HW17_calc.multiply(-100, 20)
+        result = HW17_calc.multiply(-100.0, 20)
         self.assertEqual(-2000, result)
 
     def test_multiply_float_result(self):
         result = HW17_calc.multiply(1, 0.5)
         self.assertEqual(0.5, result)
+
+    def test_multiply_bigint_result(self):
+        result = HW17_calc.multiply(999999999999999999999999999999, 999999999999999999999999999999)
+        self.assertEqual(999999999999999999999999999998000000000000000000000000000001, result)
+
+    def test_multiply_bigfloat_result(self):
+        result = HW17_calc.multiply(999999999999999999999999999999.0, 999999999999999999999999999999.0)
+        self.assertEqual(999999999999999999999999999998000000000000000000000000000001, result)
+
 # деление
     def test_divide(self):
         result = HW17_calc.divide(15,3)
