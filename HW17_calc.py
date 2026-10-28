@@ -17,7 +17,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 def parse_number(s):
-    s = s.strip()
+    s = re.sub(r"\s+", "", s)
     if INT_RE.match(s):
         return int(s)
     if FLOAT_RE.match(s):

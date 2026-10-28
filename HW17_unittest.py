@@ -14,7 +14,7 @@ class MyTestSuite(unittest.TestCase):
         return random.randint(-9999999, 9999999)
 
 # проверка парсинга строки в число
-    def test_valid(self):
+    def test_parse_number_valid(self):
         VALID = [
             ("42", 42, int),
             ("0", 0, int),
@@ -23,6 +23,7 @@ class MyTestSuite(unittest.TestCase):
             ("-3.14", -3.14, float),
             ("0.0", 0.0, float),
             ("  42  ", 42, int),
+            ("- 48 ", -48, int),
             ("\t3.14\n", 3.14, float),
         ]
         for s, expected, expected_type in VALID:
@@ -31,7 +32,7 @@ class MyTestSuite(unittest.TestCase):
                 self.assertEqual(expected, result)
                 self.assertIs(type(result), expected_type, msg=f"type for {s!r}")
 
-    def test_invalid(self):
+    def test_parse_number_invalid(self):
         INVALID = ["", "   ", "+2", "abc", "12abc", "1.2.3", "--5", "+-5", "-", "+",
                    ".5", "5.", "1e5", "0x10"]
         for s in INVALID:
