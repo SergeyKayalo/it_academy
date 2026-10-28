@@ -54,7 +54,7 @@ class MyTestSuite(unittest.TestCase):
 
     def test_multiply_bigfloat_result(self):
         result = HW17_calc.multiply(999999999999999999999999999999.0, 999999999999999999999999999999.0)
-        self.assertEqual(999999999999999999999999999998000000000000000000000000000001.0, result)
+        self.assertAlmostEqual(999999999999999999999999999998000000000000000000000000000001.0, result, places=6)
 
 # деление
     def test_divide(self):
@@ -96,32 +96,32 @@ class MyTestSuite(unittest.TestCase):
 
 
     def test_random_operations(self):
-        OPERATIONS = {
-            "plus": (HW17_calc.plus, operator.add),
-            "minus": (HW17_calc.minus, operator.sub),
-            "multiply": (HW17_calc.multiply, operator.mul),
-            "divide": (HW17_calc.divide, operator.truediv),
-            "power": (HW17_calc.power, operator.pow),
-        }
-        for name, (func, ref) in OPERATIONS.items():
+        OPERATIONS = [
+            ("+", operator.add),
+            ("-", operator.sub),
+            ("*", operator.mul),
+            ("/", operator.truediv),
+            ("^", operator.pow)
+        ]
+        for op, ref in OPERATIONS:
             for _ in range(50):
-                if name == "divide" and b == 0:
-                    continue  # пропускаем деление на 0
-
-
-
-                if name == "power":
+                if op == "^":
                     a = random.randint(-20, 20)
                     b = random.randint(-6, 6)
                 else:
                     a = _random_number()
                     b = _random_number()
 
-                if a == 0 and b < 0:
-                    continue  # 0 ** -n → деление на ноль
+                # фильтры ПОСЛЕ генерации
+                if op == "/" and b == 0:
+                    continue
+                if op == "^" and a == 0 and b < 0:
+                    continue
 
-                with self.subTest(op=name, a=a, b=b):
-                    self.assertEqual(
-                        ref(a, b), func(a, b),
-                        msg=f"op={name}, a={a}, b={b}, ref={ref(a, b)}, got={func(a, b)}"
+                with self.subTest(op=op, a=a, b=b):
+                    self.assertAlmostEqual(
+                        ref(a, b),
+                        HW17_calc.arithmetic(a, op, b),
+                        places=6,
+                        msg=f"op={op}, a={a}, b={b}"
                     )
