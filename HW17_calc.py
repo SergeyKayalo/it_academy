@@ -53,7 +53,7 @@ def arithmetic(a, operator, b):
             print(f"Операция умножения: {a} * {b}")
             result = multiply(a, b)
         case "^":
-            print(f"Операция возведения в степень: {a} ^ {b}")
+            print(f"Операция возведения в степень: {a} ** {b}")
             try:
                 result = power(a, b)
             except ZeroDivisionError:
