@@ -1,5 +1,14 @@
+import operator
+import random
+
 import HW17_calc
 import unittest
+
+
+def _random_number(allow_float=True):
+    if allow_float and random.random() < 0.5:
+        return round(random.uniform(-9999999, 9999999), 2)
+    return random.randint(-9999999, 9999999)
 
 class MyTestSuite(unittest.TestCase):
 # сложение
@@ -45,7 +54,7 @@ class MyTestSuite(unittest.TestCase):
 
     def test_multiply_bigfloat_result(self):
         result = HW17_calc.multiply(999999999999999999999999999999.0, 999999999999999999999999999999.0)
-        self.assertEqual(999999999999999999999999999998000000000000000000000000000001, result)
+        self.assertEqual(999999999999999999999999999998000000000000000000000000000001.0, result)
 
 # деление
     def test_divide(self):
@@ -75,3 +84,44 @@ class MyTestSuite(unittest.TestCase):
     def test_power_float_result(self):
         result = HW17_calc.power(4, 0.5)
         self.assertEqual(2.0, result)
+
+    def test_power_bigfloat_result(self):
+        with self.assertRaises(OverflowError):
+            HW17_calc.power(9999, 99999.0)
+
+    def test_power_devision_zero(self):
+        with self.assertRaises(ZeroDivisionError):
+            HW17_calc.power(0, -6)
+# рандомные тесты
+
+
+    def test_random_operations(self):
+        OPERATIONS = {
+            "plus": (HW17_calc.plus, operator.add),
+            "minus": (HW17_calc.minus, operator.sub),
+            "multiply": (HW17_calc.multiply, operator.mul),
+            "divide": (HW17_calc.divide, operator.truediv),
+            "power": (HW17_calc.power, operator.pow),
+        }
+        for name, (func, ref) in OPERATIONS.items():
+            for _ in range(50):
+                if name == "divide" and b == 0:
+                    continue  # пропускаем деление на 0
+
+
+
+                if name == "power":
+                    a = random.randint(-20, 20)
+                    b = random.randint(-6, 6)
+                else:
+                    a = _random_number()
+                    b = _random_number()
+
+                if a == 0 and b < 0:
+                    continue  # 0 ** -n → деление на ноль
+
+                with self.subTest(op=name, a=a, b=b):
+                    self.assertEqual(
+                        ref(a, b), func(a, b),
+                        msg=f"op={name}, a={a}, b={b}, ref={ref(a, b)}, got={func(a, b)}"
+                    )

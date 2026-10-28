@@ -2,8 +2,8 @@ import argparse
 import re
 from pathlib import Path
 
-INT_RE   = re.compile(r'^\d+$')
-FLOAT_RE = re.compile(r'^\d+\.\d+$')
+INT_RE   = re.compile(r'^-?\d+$')
+FLOAT_RE = re.compile(r'^-?\d+\.\d+$')
 args = None
 
 if __name__ == "__main__":
@@ -54,7 +54,10 @@ def arithmetic(a, operator, b):
             result = multiply(a, b)
         case "^":
             print("Операция возведения в степень")
-            result = power(a, b)
+            try:
+                result = power(a, b)
+            except ZeroDivisionError:
+                raise ValueError(f"Возведение в отрицательную степень числа с основанием 0")
         case "/":
             print("Операция деления")
             try:
@@ -67,11 +70,14 @@ def arithmetic(a, operator, b):
 
 def calc():
     a=parse_number(args.a_text)
+
     if a is None:
+        print(a)
         print("Можно использовать только числа")
         return False
     b=parse_number(args.b_text)
     if b is None:
+        print(b)
         print("Можно использовать только числа")
         return False
     try:
