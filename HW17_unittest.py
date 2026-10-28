@@ -1,11 +1,7 @@
 import operator
 import random
-
-import HW17_calc
 import unittest
-
-
-
+import HW17_calc
 
 class MyTestSuite(unittest.TestCase):
     def _random_number(allow_float=True):
@@ -38,7 +34,6 @@ class MyTestSuite(unittest.TestCase):
         for s in INVALID:
             with self.subTest(s=s):
                 self.assertIsNone(HW17_calc.parse_number(s))
-
 
 # сложение
     def test_plus(self):
