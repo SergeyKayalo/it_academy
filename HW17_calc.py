@@ -57,7 +57,9 @@ def arithmetic(a, operator, b):
             try:
                 result = power(a, b)
             except ZeroDivisionError:
-                raise ValueError(f"Возведение в отрицательную степень числа с основанием 0")
+                raise ValueError(f"Возведение в отрицательную степень {b} числа с основанием {a}")
+            except OverflowError:
+                raise ValueError(f"Переполнение при возведении в степень: {a} ^ {b}")
         case "/":
             print(f"Операция деления: {a} / {b}")
             try:
